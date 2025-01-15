@@ -8,6 +8,7 @@ body {
   padding: 5ch;
 }
 
+
 nav {
 display: flex;
 margin-bottom: 2ch;
@@ -24,6 +25,11 @@ text-align: center;
 padding: 0.5em;
 
 }
+
+input, textarea, button {
+  font: inherit; /*Inherit all font properties */
+}
+
 a[class="current"]{
 border-bottom: 0.4em solid oklch(80% 3% 200)
 }
