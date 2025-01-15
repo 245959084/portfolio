@@ -4,3 +4,11 @@ body {
        */
     font: 100%/1.5 system-ui;
   }
+
+nav {
+  display: flex;
+}
+
+a {
+  flex: 1;
+}
