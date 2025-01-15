@@ -1,14 +1,29 @@
 body {
-    /* Set line height to 1.5 times the font size
-         and use the OS’s UI font as the website font
-       */
-    font: 100%/1.5 system-ui;
-  }
+  /* Set line height to 1.5 times the font size
+       and use the OS’s UI font as the website font
+     */
+  font: 100%/1.5 system-ui;
+  max-width: 80ch;
+  margin-inline: auto;
+  padding: 5ch;
+}
 
 nav {
-  display: flex;
+display: flex;
+margin-bottom: 2ch;
+border-bottom-width: 1px;
+border-bottom-style: solid;
+border-bottom-color: oklch(80% 3% 200)
 }
 
 a {
-  flex: 1;
+flex: 1;
+text-decoration: none;
+color: inherit;
+text-align: center;
+padding: 0.5em;
+
+}
+a[class="current"]{
+border-bottom: 0.4em solid oklch(80% 3% 200)
 }
