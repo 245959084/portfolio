@@ -41,12 +41,14 @@ a[class="current"]{
 border-bottom: 0.4em solid oklch(80% 3% 200)
 }
 
-.project{
+.projects{
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
+  gap: 3ch;
 }
 
-article {
+
+.projects article {
   grid-template-rows: subgrid;
   grid-row: span 3;
   gap: calc(20px + 10%);

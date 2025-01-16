@@ -38,14 +38,15 @@ padding: 0.5em;
 
 }
 
-
-/*input, textarea, button {
+/*
+input, textarea, button {
   font: inherit; 
   display: block;
   margin-bottom: 10px; 
   width: 100%
 
 }*/
+
 form {
   display: grid;
   grid-template-columns: auto 1fr;
