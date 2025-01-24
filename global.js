@@ -23,6 +23,9 @@ let pages = [
     {url: "https://github.com/245959084", title: "Github"}
 ]
 
+
+
+
 let nav = document.createElement('nav');
 document.body.prepend(nav);
 
@@ -47,5 +50,29 @@ for (let p of pages){
     }
     nav.append(a);
 }
+document.body.insertAdjacentHTML(
+    'afterbegin',
+        `<label class='color-scheme'>
+            Theme:
+            <select>
+                <option value = "automatic">automatic</option>
+                <option value = "dark">dark</option>
+                <option value = "light">light</option>
+            </select>
+        </label>`
+); 
 
+const select = document.querySelector('select'); /* 里面的得是<select>*/
+
+select.addEventListener('input', function (event) {
+    console.log('color scheme changed to', event.target.value);
+    document.documentElement.style.setProperty('color-scheme', event.target.value); /*更改颜色*/ 
+    localStorage.colorScheme = event.target.value;/*记录颜色*/
+    console.log(localStorage.colorScheme);
+});
+
+if ('colorScheme' in localStorage){
+    const saved = localStorage.colorScheme;
+    select.value = saved;  /*保存当前的颜色，使刷新界面以后界面的颜色还是该颜色 */
+}
 

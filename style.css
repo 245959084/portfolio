@@ -4,6 +4,14 @@ html {
   color-scheme: dark;
 }
 
+.color-scheme{
+  position: absolute; 
+  right: 1rem;
+  top: 5px;
+  font-size: 70%;
+}
+
+
 
 body {
     /* Set line height to 1.5 times the font size
