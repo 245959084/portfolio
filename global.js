@@ -20,7 +20,7 @@ let pages = [
     {url: "contact/index.html", title: 'Contact'},
     {url: "projects/index.html", title: "Projects"},
     {url: "CV/index.html", title: "Resume"},
-    {url: "https://www.google.com/", title: "google"}
+    {url: "https://github.com/245959084", title: "Github"}
 ]
 
 let nav = document.createElement('nav');
@@ -42,7 +42,7 @@ for (let p of pages){
     if (a.host ===  location.host && a.pathname === location.pathname){
         a.classList.add('current');
     }
-    if (a.host !== location.host){
+    if (a.host !==  location.host){
         a.target = "_blank";
     }
     nav.append(a);
