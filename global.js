@@ -64,6 +64,11 @@ document.body.insertAdjacentHTML(
 
 const select = document.querySelector('select'); /* 里面的得是<select>*/
 
+if ('colorScheme' in localStorage){
+    const saved = localStorage.colorScheme;
+    select.value = saved;  /*保存当前的颜色，使刷新界面以后界面的颜色还是该颜色 */
+}
+
 select.addEventListener('input', function (event) {
     console.log('color scheme changed to', event.target.value);
     document.documentElement.style.setProperty('color-scheme', event.target.value); /*更改颜色*/ 
@@ -71,8 +76,4 @@ select.addEventListener('input', function (event) {
     console.log(localStorage.colorScheme);
 });
 
-if ('colorScheme' in localStorage){
-    const saved = localStorage.colorScheme;
-    select.value = saved;  /*保存当前的颜色，使刷新界面以后界面的颜色还是该颜色 */
-}
 
