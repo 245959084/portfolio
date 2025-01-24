@@ -16,10 +16,10 @@ if (currentLink) {
 } **/
 
 let pages = [
-    {url: "../index.html", title: 'Home'},
-    {url: "../contact/index.html", title: 'Contact'},
-    {url: "../projects/index.html", title: "Projects"},
-    {url: "../CV/index.html", title: "Resume"}
+    {url: "index.html", title: 'Home'},
+    {url: "contact/index.html", title: 'Contact'},
+    {url: "projects/index.html", title: "Projects"},
+    {url: "CV/index.html", title: "Resume"}
 ]
 
 let nav = document.createElement('nav');
@@ -28,5 +28,22 @@ document.body.prepend(nav);
 for (let p of pages){
     let url = p.url;
     let title = p.title;
-    nav.insertAdjacentHTML('beforeend', `<a href="${url}">${title}</a>`);
+    const ARE_WE_HOME = document.documentElement.classList.contains('home');
+    if (!ARE_WE_HOME && !url.startsWith('http')){
+        url = '../' + url;
+    }
+    /**nav.insertAdjacentHTML('beforeend', `<a href="${url}">${title}</a>`);**/
+    let a = document.createElement('a');
+    a.href = url;
+    a.textContent = title;
+
+    if (a.host ===  location.host && a.pathname === location.pathname){
+        a.classList.add('current');
+    }
+    if (a.host !== location.host){
+        a.target = "_blank";
+    }
+    nav.append(a);
 }
+
+
