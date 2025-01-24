@@ -16,10 +16,10 @@ if (currentLink) {
 } **/
 
 let pages = [
-    {url: "index.html", title: 'Home'},
-    {url: "contact/index.html", title: 'Contact'},
-    {url: "projects/index.html", title: "Projects"},
-    {url: "CV/index.html", title: "Resume"}
+    {url: "", title: 'Home'},
+    {url: "contact/", title: 'Contact'},
+    {url: "projects/", title: "Projects"},
+    {url: "CV/", title: "Resume"}
 ]
 
 let nav = document.createElement('nav');
