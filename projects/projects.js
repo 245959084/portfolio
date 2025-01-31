@@ -11,6 +11,6 @@ const result = renderProjects(projects, projectsContainer, 'h2');
 //     article.classList.add('project-article'); // Adds the class "project-article" to each article
 // });
 
-const a = document.querySelectorAll('article');
+// const a = document.querySelectorAll('article');
 const header = document.querySelector('h1');
-header.textContent =`${a.length} Projects`;
+header.textContent =`${projects.length} Projects`; //projects count the number of projects in a array
