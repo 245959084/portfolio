@@ -6,6 +6,8 @@ const latestProjects = projects.slice(0,3);
 const projectsContainer = document.querySelector('.projects');
 const result = renderProjects(latestProjects, projectsContainer,'h2');
 
+
+
 //lab4 step3.3
 const githubData = await fetchGitHubData('245959084');
 

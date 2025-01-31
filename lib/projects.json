@@ -2,25 +2,25 @@
     {
         "title": "Raining Cities.",
         "year": "2025",
-        "image": "../images/RainCities.jpg",
+        "image": "images/RainCities.jpg",
         "description": "This is my first project for DSC106, there are four cities, San Diego, Chicago, New York City, Miami."
     },
     {
         "title": "为了纳塔",
         "year": "2024",
-        "image": "../images/为了纳塔.jpg",
+        "image": "images/为了纳塔.jpg",
         "description": "Newest Event in Genshin Impact 5.3, It is the highlight part of whole event 5."
     },
     {
         "title": "罪人舞步旋",
         "year": "2023",
-        "image": "../images/罪人舞步旋.jpg",
+        "image": "images/罪人舞步旋.jpg",
         "description": "Very dramatic part of Genshin Impact, one of my favorite story in the game."
     },
     {
         "title": "黑曜石奶奶",
         "year": "2024",
-        "image": "../images/黑曜石奶奶.jpg",
+        "image": "images/黑曜石奶奶.jpg",
         "description": "A character in the game."
     },
     {
