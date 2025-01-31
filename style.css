@@ -49,3 +49,7 @@ a {
 a[class="current"]{
   border-bottom: 0.4em solid var(--border-color);/**oklch(80% 3% 200);*//
 }
+img {
+  width: 320px;   /* Set the width */
+  height: 220px;  /* Set the height */
+}
