@@ -76,3 +76,79 @@ h2 {
 p {
   font-size: 0.025em;
 }
+
+/* lab5 step 1 */
+#projects-pie-plot {
+  width: 100%; 
+  max-width: 20em;
+  margin-block: 2em;
+  overflow: visible;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(9em, 1fr));
+  gap: 1em;
+}
+
+.legend{
+  list-style: none;
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(9em, 1fr));
+  border: 1px solid rgb(74, 219, 206); /* Add a light border around the legend */
+  border-radius: 8px;      /* Optional: Add rounded corners to the border */
+}
+
+/*lab 5 2.2*/
+#label{
+  display: flex;
+  align-items: center;
+  margin: 3px;
+}
+.swatch {
+  display: inline-block; /* Make span behave like a block element to allow width/height */
+  width: 10px;           /* Set the width of the swatch */
+  height: 10px;          /* Set the height of the swatch */
+  background-color: var(--color); /* Set the background color */
+  border-radius: 50%;
+}
+
+/*lab5 2.3*/
+.container{
+  display: flex;  
+  justify-content: space-between; /* Space out the chart and the legend */
+  align-items: flex-start;    /* Align both items to the top */
+  gap: 10px;  
+}
+
+.searchBar{
+  width: 100%;
+  max-width: 30em;
+  height: 3em;
+}
+
+/*lab5 step5.1*/
+&:has(path:hover){ 
+  path:not(:hover){
+    opacity: 0.5;
+  }
+}
+path{
+  transition: 600ms;
+  cursor: pointer;
+}
+
+/*lab5 step5.2*/
+/* .selected {
+  --color: oklch(60% 45% 0)!important;
+
+  &:is(path) {
+    fill: var(--color);
+  }
+} */
+
+.selected {
+  --color: oklch(60% 45% 0) !important;
+
+  &:is(path) {
+    fill: var(--color);
+  }
+}
