@@ -65,16 +65,20 @@ document.body.insertAdjacentHTML(
 const select = document.querySelector('select'); /* 里面的得是<select>*/
 
 if ('colorScheme' in localStorage){
+    console.log('yes');
     const saved = localStorage.colorScheme;
     select.value = saved;  /*保存当前的颜色，使刷新界面以后界面的颜色还是该颜色 */
+    document.documentElement.style.setProperty('color-scheme', select.value);
 }
 
-select.addEventListener('input', function (event) {
+select.addEventListener('input', function (event) { //选择颜色只会跑这里面的东西
     console.log('color scheme changed to', event.target.value);
     document.documentElement.style.setProperty('color-scheme', event.target.value); /*更改颜色*/ 
     localStorage.colorScheme = event.target.value;/*记录颜色*/
     console.log(localStorage.colorScheme);
+    // console.log(localStorage)
 });
+
 
 //lab4 step1.2
 export async function fetchJSON(url) {
@@ -115,9 +119,9 @@ export function renderProjects(project, containerElement, headingLevel = 'h2'){
         if (!HOME && !proj.image.startsWith('http')){ //this is because how image is formatted in json
             proj.image = '../' + proj.image; //!!!!!!!!!
         }
-        if (proj.image.startsWith('../../')){
-            proj.image = proj.image.slice(3);
-        }
+        if (proj.image.startsWith('../../')){ //用来处理5.2的问题，触碰多次pie会导致我们丢失图片
+            proj.image = proj.image.slice(3); //那是因为每次放到上面这个if的时候他就会往前面加个../
+        } //解决办法就是看到../../就移除一个../
         console.log(proj.image)
         article.innerHTML = `
             <${headingLevel}>${proj.title}</${headingLevel}>
