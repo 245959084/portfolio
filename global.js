@@ -110,12 +110,15 @@ export function renderProjects(project, containerElement, headingLevel = 'h2'){
     containerElement.innerHTML = ''; //precents duplicate elements
     for (let proj of project){//run for each project
         const article = document.createElement('article');
-
+        // ！！！！！
         const HOME = document.documentElement.classList.contains('home');
         if (!HOME && !proj.image.startsWith('http')){ //this is because how image is formatted in json
             proj.image = '../' + proj.image; //!!!!!!!!!
         }
-        
+        if (proj.image.startsWith('../../')){
+            proj.image = proj.image.slice(3);
+        }
+        console.log(proj.image)
         article.innerHTML = `
             <${headingLevel}>${proj.title}</${headingLevel}>
             <img src="${proj.image}" alt="${proj.title}">
