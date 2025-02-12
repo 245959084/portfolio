@@ -106,6 +106,7 @@ export function renderProjects(project, containerElement, headingLevel = 'h2'){
         console.error("Invalid projects data.");
         return;
     }
+
     containerElement.innerHTML = ''; //precents duplicate elements
     for (let proj of project){//run for each project
         const article = document.createElement('article');
