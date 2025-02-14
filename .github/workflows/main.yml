@@ -39,8 +39,8 @@ jobs:
 
       - name: Commit and Push
         run: |
-          git config --local user.email "billy.ni222@gmail.com"
-          git config --local user.name "2459595084"
+          git config --local user.email billy.ni222@gmail.com
+          git config --local user.name 2459595084
           mkdir -p meta
           git pull
           git add -f meta/loc.csv
