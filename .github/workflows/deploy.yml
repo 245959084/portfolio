@@ -1,0 +1,36 @@
+name: Deploy Application
+
+on:
+  push:
+    branches:
+      - main  # Trigger deployment on pushes to the 'main' branch
+
+permissions:
+  contents: write  # Grants write access to the repository contents (needed to commit and push)
+  pages: write     # Allows pushing to GitHub Pages (if you're deploying to GitHub Pages)
+  id-token: write  # Needed for GitHub Actions to use an ID token (useful for authentication, etc.)
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: '0'  # Fetch the entire Git history
+
+    - name: Run Elocuent
+      run: |
+        npx elocuent -d . -o meta/loc.csv  # Run elocuent to generate the loc.csv file
+
+    - name: Commit and Push
+      run: |
+        git config --local user.email "action@github.com"  # Set Git user email
+        git config --local user.name "GitHub Action"  # Set Git user name
+        mkdir -p meta  # Ensure the meta directory exists
+        git pull  # Pull the latest changes before committing
+        git add -f meta/loc.csv  # Add the generated loc.csv file
+        git commit -m "Update code statistics" || echo "No changes to commit"  # Commit the changes
+        git push  # Push the changes back to the repository
+

@@ -1,0 +1,5 @@
+# Ignore the generated loc.csv file in the meta directory
+meta/loc.csv
+
+# Ignore the node_modules directory
+node_modules/
