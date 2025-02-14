@@ -35,7 +35,7 @@ jobs:
           fetch-depth: '0'
       - name: Run Elocuent
         run: |
-          npx elocuent -d . -o meta/loc.csv
+          npx elocuent -d . -o ../meta/loc.csv
 
       - name: Commit and Push
         run: |
@@ -43,7 +43,7 @@ jobs:
           git config --local user.name "2459595084"
           mkdir -p meta
           git pull
-          git add -f meta/loc.csv
+          git add -f ../meta/loc.csv
           git commit -m "Update code statistics" || echo "No changes to commit"
           git push
           
