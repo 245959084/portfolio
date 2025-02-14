@@ -1,3 +1,8 @@
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+  
 - name: Checkout
   uses: actions/checkout@v4
   with:
@@ -16,3 +21,4 @@
     git add -f meta/loc.csv
     git commit -m "Update code statistics" || echo "No changes to commit"
     git push
+
