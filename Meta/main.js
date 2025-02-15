@@ -230,7 +230,7 @@ function brushSelector() {
   const svg = document.querySelector('svg');
 
   d3.select(svg)
-    .call(d3.brush().on('start brush end', brushed));  
+    .call(d3.brush().on('start brush end', brushed));  //先别管这一块，这是后面的
 
   // Raise the dots and overlay so that they appear above the rest of the elements
   d3.select(svg).selectAll('.dots, .overlay ~ *').raise();

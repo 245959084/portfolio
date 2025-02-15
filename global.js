@@ -25,8 +25,6 @@ let pages = [
 ]
 
 
-
-
 let nav = document.createElement('nav');
 document.body.prepend(nav);
 
