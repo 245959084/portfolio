@@ -19,7 +19,23 @@
     <div id="stats"></div>
 
     <h2>Commits by time of day</h2>
-    <div id="chart"></div>
+
+
+    <div id="scrollytelling">
+      <div id="scroll-container">
+          <div id="spacer"></div>
+          <div id="items-container"></div>
+      </div>
+      <div id="chart">
+        <label>
+          Show commits until:
+          <input type="range" id="time-slider" min="0" max="100" value="0" step="1">
+          <time id="selected-time">00:00</time>
+        </label>
+        <dl class="files"></dl>
+      </div>
+    </div>
+
 
     <!--step 3.1-->
     <dl id="commit-tooltip" class="info tooltip">

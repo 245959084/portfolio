@@ -155,3 +155,116 @@ circle {
 circle.selected {
   fill:purple;
 }
+
+#time-slider{
+  width: 400px;
+}
+
+label {
+  display: flex;
+  flex: 1;
+  align-items: baseline;
+  gap: 0.5em;
+}
+
+time{
+  margin-left: auto;
+}
+
+/* Lab 8 2.1*/
+/* Define the grid for the files container */
+.files {
+  display: grid;
+  grid-template-columns: 1fr 2fr;  /* The first column is for filenames, second for line counts */
+  gap: 10px;  /* Optional: adjust the gap between items */
+}
+
+/* Apply subgrid for the divs inside the .files */
+.files > div {
+  grid-column: 1 / -1; /* Make the div take up the whole width of the grid */
+  display: grid;
+  grid-template-columns: subgrid; /* Inherit the column definitions from the parent .files */
+}
+
+/* Align the dt (filenames) in the first column */
+.files > div dt {
+  grid-column: 1;
+  /* Optional: add some styling to make the filenames stand out */
+  font-weight: bold;
+}
+
+/* Align the dd (line counts) in the second column */
+.files > div dd {
+  grid-column: 2;
+  /* Optional: add some styling to line counts */
+  text-align: right;
+}
+
+/* lab 8 2.2 */
+.line {
+  display: flex;
+  width: 0.5em;
+  aspect-ratio: 1;
+  /* background: steelblue; */
+  border-radius: 50%;
+}
+
+dd {
+  grid-column: 2;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: start;
+  align-content: start;
+  gap: 0.15em;
+  padding-top: 0.6em;
+  margin-left: 0;
+}
+
+:global(body){
+  max-width: min(120ch, 80vw);
+}
+
+/*Lab 8 3.1*/
+#scrollytelling {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: subgrid;
+}
+
+/* feel free to play with this to make your scrolly more seemless with your plot */
+#scroll-container {
+  grid-column: 1;
+  position: relative;
+  width: 95%;
+  height: 350px;
+  overflow-y: scroll;
+  border: 1px solid #ccc;
+  margin-bottom: 50px;
+}
+
+#chart {
+  grid-column: 2;
+}
+
+#spacer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: none; /* transparent */
+  pointer-events: none;
+}
+
+#items-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.item {
+  height: 30px;
+  padding: 10px;
+  box-sizing: border-box;
+  border-bottom: 2px solid #eee;
+}
