@@ -4,6 +4,7 @@ let brushSelection = null;
 let xScale, yScale; // Declare global variables
 let selectedCommits = [];
 let filteredCommits = [];
+let newCommitSlice; //decalre global variables
 
 // Function to load data and initialize everything
 async function loadData() {
@@ -19,10 +20,6 @@ async function loadData() {
 
   // After data is loaded, process commits
   processCommits();
-
-  // // Call functions that depend on the data
-  // displayStats();
-  // createScatterplot();
   
     //lab 8 step 1
   let commitProgress = 100;
@@ -32,6 +29,8 @@ async function loadData() {
   //set up the slider input event listener
   let slider = document.getElementById('time-slider');
   let timeDisplay = document.getElementById('selected-time');
+
+  //########################################################### inner function
 
   //Function to update the time display based on the slider value
   function updateCommitTime(){
@@ -79,18 +78,90 @@ async function loadData() {
         filesContainer.append('dt')
         .append('code')
         .text(d => `${d.lines.length} lines`); //number of lines
-          
+      updateScatterplot(filteredCommits);
+    }
+    //########### end of inner function update commit time
+    
 
-    updateScatterplot(filteredCommits);
-        }
-    updateCommitTime();
-    slider.addEventListener('input', updateCommitTime);
+    //###########
+    // //lab 8 3.1 create scrolly
+    let NUM_ITEMS = 100; // Ideally, let this value be the length of your commit history
+    let ITEM_HEIGHT = 50; // Feel free to change
+    let VISIBLE_COUNT = 10; // Feel free to change as well
+    let totalHeight = (NUM_ITEMS - 1) * ITEM_HEIGHT;
+    const scrollContainer = d3.select('#scroll-container');
+    const spacer = d3.select('#spacer');
+    spacer.style('height', `${totalHeight}px`);
+    const itemsContainer = d3.select('#items-container');
+    scrollContainer.on('scroll', () => {
+      const scrollTop = scrollContainer.property('scrollTop');
+      let startIndex = Math.floor(scrollTop / ITEM_HEIGHT);
+      startIndex = Math.max(0, Math.min(startIndex, commits.length - VISIBLE_COUNT));
+      //console.log(startIndex);
+      renderItems(startIndex);
+    });
+
+    //######## renderItems function
+    function renderItems(startIndex){
+      itemsContainer.selectAll('div').remove();
+      const endIndex = Math.min(startIndex + VISIBLE_COUNT, commits.length);
+      let newCommitSlice = commits.slice(startIndex, endIndex);
+      updateScatterplot(newCommitSlice); //update scatter plot
+
+      //add or create info to the div
+      itemsContainer.selectAll('div')
+          .data(newCommitSlice)
+          .enter()
+          .append('div')
+          .each(function (commit, idx) {
+            // Create the <p> element for each commit
+            const p = d3.select(this).append('p');
+    
+            // Set the content inside the <p> element
+            p.html(`
+                On ${commit.datetime.toLocaleString("en", { dateStyle: "full", timeStyle: "short" })}, I made
+                    ${idx > 0 ? 'another glorious commit' : 'my first commit, and it was glorious'}
+                </a>. I edited ${commit.totalLines} lines across ${d3.rollups(commit.lines, D => D.length, d => d.file).length} files.
+                Then I looked over all I had made, and I saw that it was very good.
+            `);
+
+            // p.html(`${commit.datatime}`);
+          
+          
+          })
+          .style('position', 'absolute')
+          .style('top', (_, idx) => `${idx * ITEM_HEIGHT}px`)
+    }
+    //##### displayCommitFiles
+    function displayCommitFiles() {
+      const lines = filteredCommits.flatMap((d) => d.lines);
+      let fileTypeColors = d3.scaleOrdinal(d3.schemeTableau10);
+      let files = d3.groups(lines, (d) => d.file).map(([name, lines]) => {
+        return { name, lines };
+      });
+      files = d3.sort(files, (d) => -d.lines.length);
+      d3.select('.files').selectAll('div').remove();
+      let filesContainer = d3.select('.files').selectAll('div').data(files).enter().append('div');
+      filesContainer.append('dt').html(d => `<code>${d.name}</code><small>${d.lines.length} lines</small>`);
+      filesContainer.append('dd')
+                    .selectAll('div')
+                    .data(d => d.lines)
+                    .enter()
+                    .append('div')
+                    .attr('class', 'line')
+                    .style('background', d => fileTypeColors(d.type));
+    }
+
+    displayCommitFiles();
+    // updateCommitTime();
+    // slider.addEventListener('input', updateCommitTime);
+    // slider.addEventListener('input', displayCommitFiles);
     displayStats();
-      }
+    }
 
   // Function to process commits into a structured format
   function processCommits() {
-  console.log(data);
+  // console.log(data);
   commits = d3
     .groups(data, (d) => d.commit)
     .map(([commit, lines]) => {
